@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LBTTCalculator
 {
-    internal interface TaxBand
+    internal interface ITaxBand
     {
         public decimal InvokeCalculator(decimal price);
     }

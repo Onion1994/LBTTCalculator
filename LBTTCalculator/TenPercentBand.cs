@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LBTTCalculator
 {
-    internal class TenPercentBand : TaxBand
+    internal class TenPercentBand : ITaxBand
     {
         private const decimal taxPercentage = 0.10m;
         private const decimal LowerBandLimit = 325000;
