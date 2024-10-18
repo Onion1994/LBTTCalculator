@@ -8,12 +8,12 @@ namespace LBTTCalculator
 {
     internal class LBTTBandSelector
     {
-        private readonly List<(decimal upperLimit, Func<ITaxBand> band)> taxBands;
+        private readonly List<(decimal upperLimit, Func<ITaxBand> band)> _taxBands;
         public decimal Tax { get; private set; }
 
         public LBTTBandSelector()
         {
-            taxBands = new List<(decimal, Func<ITaxBand>)>
+            _taxBands = new List<(decimal, Func<ITaxBand>)>
         {
             (145000, () => new ZeroPercentBand()),
             (250000, () => new TwoPercentBand()),
@@ -23,9 +23,9 @@ namespace LBTTCalculator
         };
         }
 
-        public decimal CalculateTax(decimal price)
+        public ITaxBand SelectBand(decimal price)
         {
-            return taxBands.First(band => price <= band.upperLimit).band().InvokeCalculator(price);
+            return _taxBands.First(band => price <= band.upperLimit).band();
         }
     }
 }
