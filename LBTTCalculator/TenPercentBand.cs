@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace LBTTCalculator
 {
-    internal class TenPercentBandCalculator : ILBTTCalculator
+    internal class TenPercentBand : TaxBand
     {
-        public decimal taxPercentage = 0.10m;
-        public decimal remainingAmount = 325000;
-        public decimal remainingTax = 5850;
+        private const decimal taxPercentage = 0.10m;
+        private const decimal LowerBandLimit = 325000;
+        private const decimal remainingTax = 5850;
         public decimal InvokeCalculator(decimal price)
         {
             Calculator calculator = new Calculator();
-            decimal tax = calculator.CalculateTax(price, remainingAmount, taxPercentage, remainingTax);
+            decimal tax = calculator.CalculateTax(price, LowerBandLimit, taxPercentage, remainingTax);
             return tax;
         }
 

@@ -8,16 +8,16 @@ namespace LBTTCalculator
 {
     internal class Calculator
     {
-        public decimal tax;
-        public decimal totalAmount;
-        public decimal taxedAmount;
+        public decimal Tax { get; private set; }
+        public decimal TotalAmount { get; private set; }
+        public decimal TaxedAmount { get; private set; }
 
-        public decimal CalculateTax(decimal price, decimal remainingAmount, decimal taxPercentage, decimal remainingTax)
+        public decimal CalculateTax(decimal price, decimal lowerBandLimit, decimal taxPercentage, decimal remainingTax)
         {
-            taxedAmount = price - remainingAmount;
-            tax = taxedAmount * taxPercentage;
-            totalAmount = Math.Floor(tax + remainingTax);
-            return totalAmount;
+            TaxedAmount = price - lowerBandLimit;
+            Tax = TaxedAmount * taxPercentage;
+            TotalAmount = Math.Floor(Tax + remainingTax);
+            return TotalAmount;
         }
     }
 }
