@@ -7,11 +7,11 @@ namespace LBTTCalculator
     [TestFixture]
     public class LBTTCalculatorTests
     {
-        private LBTTCalculator lbttCalculator;
+        private LBTTBandSelector bandSelector;
         [SetUp]
         public void Setup()
         {
-            lbttCalculator = new LBTTCalculator();
+            bandSelector = new LBTTBandSelector();
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace LBTTCalculator
             
 
             // Act
-            decimal tax = lbttCalculator.CalculateTax(price);
+            decimal tax = bandSelector.SelectBand(price);
 
             // Assert
             Assert.That(tax, Is.EqualTo(0), "Tax should be zero for properties below the threshold.");
@@ -35,7 +35,7 @@ namespace LBTTCalculator
 
 
             // Act
-            decimal tax = lbttCalculator.CalculateTax(price);
+            decimal tax = bandSelector.SelectBand(price);
 
             // Assert
             Assert.That(tax, Is.EqualTo(0), "Should round down to zero for tax below £1");
@@ -48,7 +48,7 @@ namespace LBTTCalculator
 
 
             // Act
-            decimal tax = lbttCalculator.CalculateTax(price);
+            decimal tax = bandSelector.SelectBand(price);
 
             // Assert
             Assert.That(tax, Is.EqualTo(1100), "Should add 2% of tax on the amount above the treshold.");
@@ -62,7 +62,7 @@ namespace LBTTCalculator
 
 
             // Act
-            decimal tax = lbttCalculator.CalculateTax(price);
+            decimal tax = bandSelector.SelectBand(price);
 
             // Assert
             Assert.That(tax, Is.EqualTo(4600), "Should add 5% tax on the amount above 250000 to the total amount");
@@ -74,7 +74,7 @@ namespace LBTTCalculator
             decimal price = 400000;
 
             // Act
-            decimal tax = lbttCalculator.CalculateTax(price);
+            decimal tax = bandSelector.SelectBand(price);
 
             // Assert
             Assert.That(tax, Is.EqualTo(13350), "Should add 10% tax on the amount above 325000 to the total amount");
@@ -86,7 +86,7 @@ namespace LBTTCalculator
             decimal price = 800000;
 
             // Act
-            decimal tax = lbttCalculator.CalculateTax(price);
+            decimal tax = bandSelector.SelectBand(price);
 
             // Assert
             Assert.That(tax, Is.EqualTo(54350), "Should add 12% tax on the amount above 750000 to the total amount");

@@ -8,6 +8,6 @@ namespace LBTTCalculator
 {
     internal interface ITaxBand
     {
-        public decimal InvokeCalculator(decimal price);
+        public decimal CalculateTaxDue(decimal price);
     }
 }
